@@ -4,7 +4,7 @@ export default function GallerySection() {
       <div className="gallery-top">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1468818438311-4bab781ab9b8?w=1800&q=80"
+          src="/images/shyam-infront-of-plane.png"
           alt="Syam Kumar with plane"
           className="gallery-main"
           loading="lazy"
