@@ -357,7 +357,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: var(--white);
   color: var(--black);
   font-family: var(--font-head);
   font-weight: 600;
@@ -702,40 +702,103 @@ img {
 ===================================================== */
 .witness-section {
   display: grid;
-  grid-template-columns: 1fr 0.55fr 1.1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   align-items: center;
   background: var(--white);
-  padding: 7rem 5vw 5rem;
-  min-height: 520px;
+  padding: 8rem 5vw 4rem;
+  min-height: 600px;
   overflow: visible;
   position: relative;
+}
+
+.witness-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
 }
 
 .witness-stats {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 3.5rem;
 }
 
-.witness-stats p {
-  font-family: var(--font-head);
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-  font-weight: 600;
-  color: var(--black);
-  line-height: 1.3;
+.stat-item {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.8rem;
 }
 
 .stat-num {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
   font-weight: 800;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 2.8vw, 2.2rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.stat-label-only {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 2.8vw, 2.2rem);
+  font-weight: 500;
+  color: var(--black);
+  line-height: 1.2;
 }
 
 .witness-btns {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
   align-items: flex-start;
+}
+
+.btn-fund-dream {
+  background: var(--yellow);
+  color: var(--black);
+  padding: 1.1rem 3.4rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.3rem;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(255, 211, 19, 0.4);
+  transition: all var(--transition);
+  border: none;
+}
+
+.btn-fund-dream:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 211, 19, 0.5);
+}
+
+.btn-view-records {
+  background: var(--white);
+  color: var(--black);
+  padding: 1rem 3.3rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-decoration: none;
+  border: 2px solid var(--yellow);
+  transition: all var(--transition);
+}
+
+.btn-view-records:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 211, 19, 0.05);
 }
 
 /* Center column: Kerala map + Syam's photo */
@@ -744,123 +807,163 @@ img {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 420px;
+  min-height: 550px;
 }
 
-/* Kerala State silhouette SVG */
-.kerala-svg {
+.kerala-map-container {
   position: absolute;
-  bottom: -10px;
+  top: -60px;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 130px;
-  height: auto;
-  opacity: 0.95;
+  transform: translateX(-55%);
+  width: 350px;
   z-index: 1;
 }
 
+.kerala-map-img {
+  width: 100%;
+  height: auto;
+  opacity: 1;
+}
+
 .witness-photo {
-  width: 260px;
-  height: 420px;
+  width: 110%;
+  max-width: 580px;
+  height: auto;
   object-fit: contain;
   object-position: bottom center;
   position: relative;
   z-index: 2;
-  border-radius: 0;
-  filter: none;
+  transform: translateY(20px);
 }
 
 .witness-right {
-  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  z-index: 10;
 }
 
 .witness-title {
   font-family: var(--font-head);
-  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
   font-weight: 800;
   color: var(--black);
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
 }
 
 /* =====================================================
    VIDEO SECTION
-===================================================== */
+==================================================== */
 .video-section {
-  background: #f5f0e0;
-  padding: 4.5rem 5vw 3.5rem;
+  background: rgba(255, 211, 19, 0.1);
+  padding: 6rem 5vw 8rem;
   text-align: center;
+  position: relative;
 }
 
-.video-caption {
+/* Softer, more integrated transition glow that bridges the two sections */
+.video-section::before {
+  content: "";
+  position: absolute;
+  top: -160px;
+  left: 0;
+  right: 0;
+  height: 320px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 211, 19, 0.05) 45%,
+    rgba(255, 211, 19, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.video-section-content {
+  max-width: 1335px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.video-intro-text {
   font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
-  color: #333;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  max-width: 680px;
+  font-size: 24px;
+  color: #000;
+  line-height: 1.5;
+  margin-bottom: 6rem;
+  font-weight: 500;
+  max-width: 1169px;
   margin-left: auto;
   margin-right: auto;
+  letter-spacing: -0.01em;
 }
 
 .video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-  max-width: 900px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 15rem); /* Responsive gap to approach 239px on large screens */
+  width: 100%;
 }
 
 .video-card {
   background: var(--white);
-  border-radius: var(--radius-card);
+  border-radius: 32px;
   overflow: hidden;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  width: 285px;
+  height: 283px;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  align-items: center;
 }
 
 .video-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
-.video-thumb {
-  aspect-ratio: 4/3;
-  background: #c5c5c5;
+.video-thumb-v2 {
+  width: 246px;
+  height: 184px;
+  background: #A1A1A1;
+  border-radius: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
 }
 
-.play-btn {
-  width: 54px;
-  height: 54px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
+.play-icon-v2 {
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
-  color: var(--black);
-  padding-left: 4px;
-  transition: background var(--transition), transform var(--transition);
+  transition: transform 0.3s ease;
 }
 
-.video-card:hover .play-btn {
-  background: var(--yellow);
-  transform: scale(1.08);
+.video-card:hover .play-icon-v2 {
+  transform: scale(1.1);
 }
 
-.video-label {
+.video-caption-v2 {
   font-family: var(--font-body);
-  font-size: 0.82rem;
-  color: #333;
-  padding: 0.7rem 0.9rem;
-  text-align: center;
+  font-size: 16px;
+  color: #000;
   font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  margin-top: 19px;
+  letter-spacing: -0.01em;
+  max-width: 251px;
 }
 
 /* =====================================================
@@ -1127,6 +1230,25 @@ img {
 }
 
 .gallery-item:hover {
+  transform: scale(1.01);
+}
+
+.gallery-bottom {
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+  margin-top: 1.2rem;
+}
+
+.gallery-wide {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-card-lg);
+  transition: transform 0.6s ease;
+}
+
+.gallery-wide:hover {
   transform: scale(1.01);
 }
 

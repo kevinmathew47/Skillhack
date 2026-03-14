@@ -25,26 +25,32 @@ export default function VideoSection() {
   return (
     <>
       <section id="journey" className="video-section">
-        <p className="video-caption">
-          These testimonials showcase Syam&apos;s incredible journey from medical trauma to sky mastery.<br />
-          Each video tells a part of the story that proves human potential has no ceiling.
-        </p>
-        <div className="video-grid">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="video-card"
-              tabIndex={0}
-              aria-label="Play video"
-              onClick={openModal}
-              onKeyDown={handleKeyDown}
-            >
-              <div className="video-thumb">
-                <div className="play-btn">&#9654;</div>
+        <div className="video-section-content">
+          <p className="video-intro-text">
+            These testimonials showcase Syam&apos;s incredible journey from medical trauma to sky mastery.<br />
+            Each video tells a part of the story that proves human potential has no ceiling.
+          </p>
+          <div className="video-grid">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="video-card"
+                tabIndex={0}
+                aria-label="Play video"
+                onClick={openModal}
+                onKeyDown={handleKeyDown}
+              >
+                <div className="video-thumb-v2">
+                  <div className="play-icon-v2">
+                    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 5V19L19 12L8 5Z" />
+                    </svg>
+                  </div>
+                </div>
+                <p className="video-caption-v2">The Medical Journey: From Hospital Bed to Sky</p>
               </div>
-              <p className="video-label">The Medical Journey: From Hospital Bed to Sky</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

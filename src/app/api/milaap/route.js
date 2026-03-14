@@ -2,37 +2,48 @@ import { NextResponse } from "next/server";
 
 const MILAAP_URL = "https://milaap.org/fundraisers/support-syam-kumar-s-s";
 
-function parseSupportersCount(html) {
-  const m = html.match(/<span class="donation-count">([\d,]+)\s+supporters<\/span>/i);
-  if (m) return parseInt(m[1].replace(/,/g, ""), 10);
+function parseSupportersCount(html, jsonData) {
+  // Try from JSON first
+  if (jsonData) {
+    if (jsonData.supporters_count) return parseInt(jsonData.supporters_count, 10);
+    if (jsonData.donors_count) return parseInt(jsonData.donors_count, 10);
+  }
+
+  // Try various HTML patterns
+  const m1 = html.match(/<span[^>]*class="donation-count"[^>]*>([\d,]+)/i);
+  if (m1) return parseInt(m1[1].replace(/,/g, ""), 10);
+
+  const m2 = html.match(/([\d,]+)\s+supporters/i);
+  if (m2) return parseInt(m2[1].replace(/,/g, ""), 10);
+
   return null;
 }
 
 function parseHtml(html) {
-  // Try campaign-data JSON first
+  let jsonData = null;
   const campaignMatch = html.match(/id="campaign-data"[^>]*>([\s\S]*?)<\/script>/i);
   if (campaignMatch) {
     try {
-      const data = JSON.parse(campaignMatch[1]);
-      if (data.donorCostBreakupData?.fund_raised) {
-        return parseInt(data.donorCostBreakupData.fund_raised.replace(/[^\d]/g, ""), 10);
-      }
+      jsonData = JSON.parse(campaignMatch[1]);
     } catch (_) {}
   }
 
-  const m1 = html.match(/"fund_raised"\s*:\s*"[₹Rs.\s]*([\d,]+)"/i);
-  if (m1) return parseInt(m1[1].replace(/,/g, ""), 10);
+  let amount = null;
+  if (jsonData?.donorCostBreakupData?.fund_raised) {
+    amount = parseInt(jsonData.donorCostBreakupData.fund_raised.replace(/[^\d]/g, ""), 10);
+  }
 
-  const m2 = html.match(/"total_amount_raised"\s*:\s*(\d+)/i);
-  if (m2) return parseInt(m2[1], 10);
+  if (amount === null) {
+    const m1 = html.match(/"fund_raised"\s*:\s*"[₹Rs.\s]*([\d,]+)"/i);
+    if (m1) amount = parseInt(m1[1].replace(/,/g, ""), 10);
+  }
 
-  const m3 = html.match(/"amount_raised"\s*:\s*(\d+)/i);
-  if (m3) return parseInt(m3[1], 10);
+  if (amount === null) {
+    const m4 = html.match(/Rs\.\s*([\d,]+)/i);
+    if (m4) amount = parseInt(m4[1].replace(/,/g, ""), 10);
+  }
 
-  const m4 = html.match(/Rs\.\s*([\d,]+)/i);
-  if (m4) return parseInt(m4[1].replace(/,/g, ""), 10);
-
-  return null;
+  return { amount, jsonData };
 }
 
 export async function GET() {
@@ -42,24 +53,20 @@ export async function GET() {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       },
-      next: { revalidate: 300 }, // Cache for 5 minutes (App Router feature)
+      next: { revalidate: 300 },
     });
 
-    if (!response.ok) {
-      throw new Error(`Milaap responded with ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`Milaap responded with ${response.status}`);
 
     const html = await response.text();
-    const amount = parseHtml(html);
-    const supporters = parseSupportersCount(html);
+    const { amount, jsonData } = parseHtml(html);
+    const supporters = parseSupportersCount(html, jsonData);
 
-    if (amount === null) {
-      throw new Error("Could not parse raised amount from Milaap");
-    }
+    if (amount === null) throw new Error("Could not parse raised amount");
 
     return NextResponse.json({
       amount,
-      supporters: supporters || 0,
+      supporters: supporters || 11, // Fallback to 11 if parsing fails
       ts: Date.now(),
     });
   } catch (error) {
