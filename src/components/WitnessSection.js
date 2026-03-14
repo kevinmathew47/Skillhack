@@ -53,7 +53,9 @@ export default function WitnessSection() {
       {/* Right Column: Key Narrative Heading */}
       <div className="witness-right">
         <h2 className="witness-title">
-          Witness The Journey:<br />From Biological Mutiny<br />to Sky Mastery
+          <div className="witness-line-1">Witness The Journey:</div>
+          <div className="witness-line-2">From Biological Mutiny</div>
+          <div className="witness-line-3">to Sky Mastery</div>
         </h2>
       </div>
     </section>

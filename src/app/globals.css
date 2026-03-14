@@ -715,7 +715,8 @@ img {
 .witness-left {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-self: flex-start;
+  margin-top: 1rem;
   z-index: 10;
 }
 
@@ -845,22 +846,33 @@ img {
   object-position: bottom center;
   transform: scale(1.15);
   transform-origin: bottom center;
+  margin-bottom: 45px;
 }
 
 .witness-right {
   display: flex;
-  align-items: center;
+  align-self: flex-start;
+  margin-top: 1rem;
   padding-left: 2rem;
   z-index: 10;
 }
 
 .witness-title {
-    font-family: var(--font-head);
+    display: flex;
+    flex-direction: column;
+    max-width: 548px;
+    gap: 20;
+}
+
+.witness-line-1,
+.witness-line-2,
+.witness-line-3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.2rem); /* Caps at exactly 48px */
+    line-height: 1.1; /* Tighter line height to match exactly the 100% look */
+    letter-spacing: -0.01em;
     color: var(--black);
-    letter-spacing: -.015em;
-    font-size: clamp(2.4rem, 4.8vw, 1.5rem);
-    font-weight: 800;
-    line-height: 1.1;
 }
 
 /* =====================================================
