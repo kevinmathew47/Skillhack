@@ -3,51 +3,75 @@
 import { useState } from "react";
 
 export default function VideoSection() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [activeVideo, setActiveVideo] = useState(null);
 
-  const openModal = () => {
-    setModalOpen(true);
+  const videos = [
+    {
+      id: "WkTEp1MdOnw",
+      title: "The Medical Journey: From Hospital Bed to Sky"
+    },
+    {
+      id: "pV9OerNwpdk",
+      title: "The Medical Journey: From Hospital Bed to Sky"
+    },
+    {
+      id: "9JXt6NK0rZA",
+      title: "The Medical Journey: From Hospital Bed to Sky"
+    }
+  ];
+
+  const openModal = (videoId) => {
+    setActiveVideo(videoId);
     document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    setActiveVideo(null);
     document.body.style.overflow = "";
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e, videoId) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openModal();
+      openModal(videoId);
     }
   };
 
   return (
     <>
       <section id="journey" className="video-section">
+        <div className="video-section-blend"></div>
         <div className="video-section-content">
           <p className="video-intro-text">
             These testimonials showcase Syam&apos;s incredible journey from medical trauma to sky mastery.<br />
             Each video tells a part of the story that proves human potential has no ceiling.
           </p>
           <div className="video-grid">
-            {[1, 2, 3].map((i) => (
+            {videos.map((video, index) => (
               <div
-                key={i}
+                key={index}
                 className="video-card"
                 tabIndex={0}
                 aria-label="Play video"
-                onClick={openModal}
-                onKeyDown={handleKeyDown}
+                onClick={() => openModal(video.id)}
+                onKeyDown={(e) => handleKeyDown(e, video.id)}
               >
-                <div className="video-thumb-v2">
+                <div 
+                  className="video-thumb-v2" 
+                  style={{
+                    backgroundImage: `url(https://img.youtube.com/vi/${video.id}/maxresdefault.jpg)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    border: 'none'
+                  }}
+                >
                   <div className="play-icon-v2">
-                    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.4))' }}>
                       <path d="M8 5V19L19 12L8 5Z" />
                     </svg>
                   </div>
                 </div>
-                <p className="video-caption-v2">The Medical Journey: From Hospital Bed to Sky</p>
+                <p className="video-caption-v2">{video.title}</p>
               </div>
             ))}
           </div>
@@ -56,13 +80,65 @@ export default function VideoSection() {
 
       {/* Video modal */}
       <div
-        className={`video-modal${modalOpen ? " open" : ""}`}
+        className={`video-modal${activeVideo ? " open" : ""}`}
         id="videoModal"
         onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
+        style={{
+          display: activeVideo ? 'flex' : 'none',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          zIndex: 99999,
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '2rem'
+        }}
       >
-        <div className="video-modal-inner">
-          <button className="modal-close" onClick={closeModal}>✕</button>
-          <p className="modal-placeholder">🎬 Video coming soon</p>
+        <div 
+          className="video-modal-inner"
+          style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '1000px',
+            aspectRatio: '16/9',
+            backgroundColor: '#000',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+          }}
+        >
+          <button 
+            className="modal-close" 
+            onClick={closeModal}
+            style={{
+              position: 'absolute',
+              top: '-40px',
+              right: '0',
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              fontSize: '2rem',
+              cursor: 'pointer',
+              zIndex: 10
+            }}
+          >
+            ✕
+          </button>
+          
+          {activeVideo && (
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
         </div>
       </div>
     </>

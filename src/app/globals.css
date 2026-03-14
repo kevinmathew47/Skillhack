@@ -706,7 +706,7 @@ img {
   gap: 2rem;
   align-items: center;
   background: var(--white);
-  padding: 8rem 5vw 4rem;
+  padding: 12rem 5vw 8rem;
   min-height: 600px;
   overflow: visible;
   position: relative;
@@ -734,11 +734,11 @@ img {
 }
 
 .stat-num {
-  font-family: var(--font-head);
-  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
-  font-weight: 800;
-  color: var(--yellow);
-  line-height: 1;
+    font-family: var(--font-head);
+    color: var(--yellow);
+    font-size: clamp(2.4rem, 4.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1;
 }
 
 .stat-label {
@@ -815,8 +815,8 @@ img {
   top: -60px;
   bottom: 0;
   left: 50%;
-  transform: translateX(-55%);
-  width: 350px;
+  width: 420px;
+  transform: translateX(-53%) translateY(-20px);
   z-index: 1;
 }
 
@@ -826,15 +826,25 @@ img {
   opacity: 1;
 }
 
+.witness-photo-container {
+    z-index: 2;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    position: relative;
+    transform: translateY(100px) scale(1.4);
+    padding-left: 80px;
+}
+
 .witness-photo {
-  width: 110%;
-  max-width: 580px;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: bottom center;
-  position: relative;
-  z-index: 2;
-  transform: translateY(20px);
+  transform: scale(1.15);
+  transform-origin: bottom center;
 }
 
 .witness-right {
@@ -845,42 +855,36 @@ img {
 }
 
 .witness-title {
-  font-family: var(--font-head);
-  font-size: clamp(2.4rem, 4.8vw, 4rem);
-  font-weight: 800;
-  color: var(--black);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+    font-family: var(--font-head);
+    color: var(--black);
+    letter-spacing: -.015em;
+    font-size: clamp(2.4rem, 4.8vw, 1.5rem);
+    font-weight: 800;
+    line-height: 1.1;
 }
 
 /* =====================================================
    VIDEO SECTION
 ==================================================== */
 .video-section {
-  background: transparent;
-  padding: 8rem 5vw 12rem;
+  background: rgba(255, 211, 19, 0.1); /* #FFD3131A */
+  padding: 110px 5vw;
+  min-height: 483px;
   text-align: center;
   position: relative;
   overflow: visible;
+  margin-top: -100px;
+  backdrop-filter: blur(10px);
 }
 
 /* Glassmorphism Blend Layer - Creating the frosted transition */
 .video-section-blend {
   position: absolute;
-  top: -260px;
+  top: -120px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 254, 245, 0.2) 15%,
-    rgba(255, 254, 245, 0.75) 45%,
-    rgba(255, 254, 245, 0.98) 70%,
-    #fffef5 100%
-  );
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
+  background: transparent;
   z-index: 1;
   pointer-events: none;
 }
@@ -894,11 +898,11 @@ img {
 
 .video-intro-text {
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 18px;
   color: #000;
   line-height: 1.5;
-  margin-bottom: 6rem;
-  font-weight: 500;
+  margin-bottom: 1rem;
+  font-weight: 400;
   max-width: 1169px;
   margin-left: auto;
   margin-right: auto;

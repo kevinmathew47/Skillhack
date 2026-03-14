@@ -39,13 +39,15 @@ export default function WitnessSection() {
           />
         </div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="witness-photo"
-          src="/images/highlight-image.png"
-          alt="Syam Kumar"
-          loading="lazy"
-        />
+        <div className="witness-photo-container">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="witness-photo"
+            src="/images/highlight-image.png"
+            alt="Syam Kumar"
+            loading="lazy"
+          />
+        </div>
       </div>
 
       {/* Right Column: Key Narrative Heading */}
