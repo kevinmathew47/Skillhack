@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navbarRef = useRef(null);
   const hamburgerRef = useRef(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,17 +28,20 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  // Helper function to build correct section links depending on current route
+  const getSectionHref = (hash) => pathname === "/" ? hash : `/${hash}`;
+
   return (
     <header id="navbar" ref={navbarRef}>
       <nav className="nav-inner">
-        <a href="#home" className="nav-logo">Syam</a>
+        <Link href="/" className="nav-logo">Syam</Link>
         <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#journey">Journey</a></li>
-          <li><a href="#mission">Mission</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#news">News</a></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href={getSectionHref("#about")}>About</Link></li>
+          <li><Link href={getSectionHref("#journey")}>Journey</Link></li>
+          <li><Link href={getSectionHref("#mission")}>Mission</Link></li>
+          <li><Link href={getSectionHref("#gallery")}>Gallery</Link></li>
+          <li><Link href={getSectionHref("#news")}>News</Link></li>
         </ul>
         <Link href="/fund" className="btn-fund nav-cta">Fund my dream</Link>
         <button
@@ -53,12 +58,12 @@ export default function Navbar() {
       </nav>
       <div className={`nav-mobile${mobileOpen ? " open" : ""}`} id="navMobile">
         <ul>
-          <li><a href="#home" onClick={closeMenu}>Home</a></li>
-          <li><a href="#about" onClick={closeMenu}>About</a></li>
-          <li><a href="#journey" onClick={closeMenu}>Journey</a></li>
-          <li><a href="#mission" onClick={closeMenu}>Mission</a></li>
-          <li><a href="#gallery" onClick={closeMenu}>Gallery</a></li>
-          <li><a href="#news" onClick={closeMenu}>News</a></li>
+          <li><Link href="/" onClick={closeMenu}>Home</Link></li>
+          <li><Link href={getSectionHref("#about")} onClick={closeMenu}>About</Link></li>
+          <li><Link href={getSectionHref("#journey")} onClick={closeMenu}>Journey</Link></li>
+          <li><Link href={getSectionHref("#mission")} onClick={closeMenu}>Mission</Link></li>
+          <li><Link href={getSectionHref("#gallery")} onClick={closeMenu}>Gallery</Link></li>
+          <li><Link href={getSectionHref("#news")} onClick={closeMenu}>News</Link></li>
           <li><Link href="/fund" className="btn-fund" onClick={closeMenu}>Fund my dream</Link></li>
         </ul>
       </div>

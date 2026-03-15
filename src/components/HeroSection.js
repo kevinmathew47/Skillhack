@@ -60,8 +60,7 @@ export default function HeroSection({ raisedAmount, goalAmount, pillFillWidth })
         <Link href="/fund" className="btn-fund hero-btn">Fund my dream</Link>
       </div>
 
-      {/* Handwritten "A Life Above Limits" */}
-      <div className="hero-handwritten" aria-hidden="true">A Life Above Limits</div>
+
     </section>
   );
 }

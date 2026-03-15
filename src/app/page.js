@@ -31,10 +31,7 @@ export default function HomePage() {
       />
       <WitnessSection />
       <VideoSection />
-      <FeaturedVideo />
-      <ProjectsSection />
       <TimelineSection />
-      <GallerySection />
       <MissionSection />
       <FundCTA
         raisedText={`${raisedText} raised`}
@@ -42,7 +39,9 @@ export default function HomePage() {
         fillWidth={fillWidth}
         supportersCount={supportersCount}
       />
+      <ProjectsSection />
       <NewsSection />
+      <GallerySection />
       <Footer />
     </>
   );
