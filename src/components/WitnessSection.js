@@ -3,6 +3,12 @@ import Link from "next/link";
 export default function WitnessSection() {
   return (
     <section id="about" className="witness-section">
+      <div 
+        className="hero-handwritten text-center" 
+        style={{ position: 'absolute', top: '1rem', left: '0', right: '0', bottom: 'auto', marginBottom: '2rem', width: '100%', zIndex: 10 }}
+      >
+        A Life Above Limits
+      </div>
       {/* Left Column: Stats and Action Buttons */}
       <div className="witness-left">
         <div className="witness-stats">

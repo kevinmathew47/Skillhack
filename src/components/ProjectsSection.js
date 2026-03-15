@@ -2,15 +2,17 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="projects-section">
       <h2 className="projects-heading">What I&apos;ve been working on!</h2>
-      
-      <div className="project-media-wrap">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src="/images/project-hero.png" 
-          alt="Syam Kumar Skydiving" 
-          className="project-hero-img"
-          loading="lazy"
-        />
+
+      <div className="project-media-wrap" style={{ position: 'relative' }}>
+        <video
+          className="featured-video-player"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', display: 'block' }}
+          src="/videos/featured.mp4"
+          muted
+          loop
+          playsInline
+          autoPlay
+        ></video>
       </div>
 
       <div className="project-info-row">

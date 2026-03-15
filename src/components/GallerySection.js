@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function GallerySection() {
   return (
     <section id="gallery" className="gallery-section">
@@ -41,6 +43,11 @@ export default function GallerySection() {
           className="gallery-wide"
           loading="lazy"
         />
+      </div>
+      <div className="gallery-actions text-center mt-12 mb-8 flex gap-4 justify-center">
+        <Link href="/gallery">
+          <button className="btn-fund">view more</button>
+        </Link>
       </div>
     </section>
   );
