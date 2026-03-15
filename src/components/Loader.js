@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 export default function Loader() {
@@ -5,13 +7,22 @@ export default function Loader() {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
+    // Check if loader has already been shown in this session
+    const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
+    if (hasSeenLoader) {
+      setIsVisible(false);
+      return;
+    }
+
     document.body.style.overflow = "hidden";
 
     const timeout = setTimeout(() => {
       setIsDone(true);
       document.body.style.overflow = "";
       
-      // Wait for the CSS transition (usually 0.8s) to finish before unmounting
+      // Mark as seen in this session
+      sessionStorage.setItem("hasSeenLoader", "true");
+      
       const unmountTimeout = setTimeout(() => {
         setIsVisible(false);
       }, 1000);

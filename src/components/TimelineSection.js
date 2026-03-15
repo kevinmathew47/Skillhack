@@ -1,6 +1,6 @@
 export default function TimelineSection() {
   return (
-    <section className="timeline-section" style={{ position: 'relative', paddingTop: '8rem' }}>
+    <section id="journey" className="timeline-section" style={{ position: 'relative', paddingTop: '8rem' }}>
       <div 
         className="hero-handwritten text-center" 
         style={{ position: 'absolute', top: '2rem', left: '0', right: '0', bottom: 'auto', marginBottom: '3rem', width: '100%', zIndex: 10 }}

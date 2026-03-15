@@ -1,5 +1,6 @@
 import { Bricolage_Grotesque, Poppins, Covered_By_Your_Grace } from "next/font/google";
 import "./globals.css";
+import Loader from "@/components/Loader";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-head",
@@ -27,10 +28,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${bricolage.variable} ${poppins.variable} ${coveredByYourGrace.variable}`}
       >
+        <Loader />
         {children}
       </body>
     </html>

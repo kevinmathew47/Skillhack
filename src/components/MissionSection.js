@@ -1,91 +1,103 @@
-export default function MissionSection() {
+"use client";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+
+function MissionCard({ mission, index }) {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Vertical parallax: cards move slightly up/down with scroll
+  const yParallax = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const yParallaxSpring = useSpring(yParallax, { stiffness: 100, damping: 20 });
+
   return (
-    <section id="mission" className="mission-section">
-      <div className="mission-bg-text" aria-hidden="true">MISSION</div>
+    <div className="framer-card-outer" ref={cardRef} style={{ zIndex: index + 10 }}>
+      <motion.div
+        className="framer-card-inner"
+        style={{ y: yParallaxSpring }}
+        initial={{ 
+          rotate: mission.rotation, 
+          opacity: 0,
+          scale: 0.95
+        }}
+        whileInView={{ 
+          opacity: 1,
+          scale: 1,
+          transition: { 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 15,
+            delay: index * 0.1 
+          }
+        }}
+        viewport={{ once: true, margin: "-100px" }}
+        whileHover={{ 
+          rotate: 0, 
+          scale: 1.02,
+          boxShadow: "0 25px 90px rgba(0,0,0,0.15)",
+          transition: { 
+            type: "spring", 
+            stiffness: 400, 
+            damping: 25 
+          }
+        }}
+      >
+        <div className="framer-marker">
+          <div className="framer-marker-circle">{mission.id}</div>
+        </div>
+
+        <h2 className="framer-card-title">{mission.title}</h2>
+        
+        <div className="framer-card-text">
+          <p>{mission.text}</p>
+          {mission.extraText && <p style={{ marginTop: '1rem' }}>{mission.extraText}</p>}
+        </div>
+
+        <div className="framer-card-media">
+          <img 
+            src={mission.image} 
+            alt={mission.title} 
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+export default function MissionSection() {
+  const sectionRef = useRef(null);
+
+  const missions = [
+    {
+      id: 1,
+      title: "Mission 1: The Tom Cruise Cliff Jump & Cinematic Proof of Concept",
+      text: "A custom high-impact prosthetic leg - built from scratch for motocross landings, not walking. Engineered to absorb extreme forces, protect a vulnerable spine, and enable a live cinematic jump in Norway inspired by Mission: Impossible - captured for a documentary with global reach. One jump. Real risk. Real engineering. A blueprint for adaptive action sports worldwide.",
+      image: "https://images.unsplash.com/photo-1601024445121-e294b4116d4a?w=1200&q=80",
+      rotation: -3,
+    },
+    {
+      id: 2,
+      title: "Mission 2: Wingsuit Flight at 42,000ft - Spinal Protection & Survival",
+      text: "Wingsuit flight demands perfect bilateral symmetry. Syam has one leg and severe scoliosis - making this mission widely considered impossible. The solution: a hand-controlled mechanical leg that dynamically balances mass and restores aerodynamic control mid-flight, paired with a custom thermal suit and redundant oxygen systems.",
+      extraText: "Three years of preparation. Wind tunnel testing in Sweden. Progressive jump validation. And a target of 42,000ft - where aerospace begins.",
+      image: "https://images.unsplash.com/photo-1532452119098-a3650b3c46d3?w=1200&q=80",
+      rotation: 3,
+    },
+  ];
+
+  return (
+    <section id="mission" className="mission-section" ref={sectionRef}>
+      <div className="mission-bg-text-framer" aria-hidden="true">
+        MISSION
+      </div>
       
-      <div className="mission-container">
-        {/* Phase 1 */}
-        <div className="mission-phase-item phase-1">
-          <div className="phase-marker-wrap">
-            <div className="phase-connector top"></div>
-            <div className="phase-circle">
-              <span className="phase-number">1</span>
-            </div>
-            <div className="phase-connector bottom"></div>
-          </div>
-          
-          <div className="phase-content-card">
-            <div className="phase-meta">Phase 1 (Years 1-3)</div>
-            <h3 className="phase-mission-name yellow">
-              Mission 1: High-Performance Mobility (sky blade)
-            </h3>
-            <div className="phase-details">
-              <p>
-                This mission involves developing a next generation adaptive leg system engineered for extreme vertical and lateral forces, specifically for high impact motocross landings. 
-              </p>
-              <p>
-                • <strong>Objective:</strong> Restore controlled glide authority and aerodynamic balance for an asymmetrical body during extreme maneuvers. 
-              </p>
-              <p>
-                • <strong>Proof of Concept:</strong> A planned high risk cinematic motocross jump inspired by iconic practical stunts, serving as a demonstration for a Netflix documentary.
-              </p>
-            </div>
-            <div className="phase-media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1601024445121-e294b4116d4a?w=1200&q=80"
-                alt="Sky Blade Mission"
-                className="mission-img"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Phase 2 Header Area */}
-        <div className="phase-header-row">
-          <div className="phase-marker-wrap">
-            <div className="phase-connector top"></div>
-            <div className="phase-circle">
-              <span className="phase-number">2</span>
-            </div>
-            <div className="phase-connector bottom"></div>
-          </div>
-          <h2 className="phase-main-title">
-            Phase 2 : Healing, Rebuilding & Human Dignity
-          </h2>
-        </div>
-
-        {/* Phase 2 Mission Content */}
-        <div className="mission-phase-item phase-2">
-          <div className="phase-marker-wrap">
-            <div className="phase-connector top"></div>
-            <div className="phase-connector bottom hidden"></div>
-          </div>
-          
-          <div className="phase-content-card">
-            <h3 className="phase-mission-name yellow">
-              Mission 2: Spinal Protection & Survival • Exoskeleton Development:
-            </h3>
-            <div className="phase-details">
-              <p>
-                Engineering a proprietary protective suit architecture to mitigate the risk of severe spinal injury and paralysis during skydiving and extreme sports.
-              </p>
-              <p>
-                • <strong>Stratospheric Aspirancy:</strong> Preparation for a 41,000 foot wingsuit world record jump. This requires specialized life-support systems to survive hypoxia and temperatures as low as −90°C.
-              </p>
-            </div>
-            <div className="phase-media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1532452119098-a3650b3c46d3?w=1200&q=80"
-                alt="Exoskeleton Mission"
-                className="mission-img"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
+      <div className="framer-mission-container">
+        {missions.map((mission, index) => (
+          <MissionCard mission={mission} index={index} key={mission.id} />
+        ))}
       </div>
     </section>
   );

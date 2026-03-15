@@ -22,7 +22,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Loader />
       <Navbar />
       <HeroSection
         raisedAmount={raisedText}
@@ -41,6 +40,12 @@ export default function HomePage() {
       />
       <ProjectsSection />
       <NewsSection />
+      <div 
+        className="hero-handwritten text-center" 
+        style={{ position: 'relative', margin: '4rem 0 2rem', width: '100%', zIndex: 10 }}
+      >
+        Gallery
+      </div>
       <GallerySection />
       <Footer />
     </>

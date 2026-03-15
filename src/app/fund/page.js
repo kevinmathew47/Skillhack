@@ -6,41 +6,11 @@ import useMilaapFetch from "@/hooks/useMilaapFetch";
 
 export default function FundPage() {
   const { raisedText, goalText, fillWidth, pct, supportersCount } = useMilaapFetch();
-  const [activePreset, setActivePreset] = useState(null);
-  const [showError, setShowError] = useState(false);
-  const inputRef = useRef(null);
   const btnRef = useRef(null);
 
-  const presets = [100, 500, 1000, 5000, 10000];
-
-  const handlePresetClick = (amount) => {
-    setActivePreset(amount);
-    if (inputRef.current) {
-      inputRef.current.value = amount;
-      inputRef.current.focus();
-    }
-    setShowError(false);
-  };
-
-  const handleInputChange = () => {
-    setActivePreset(null);
-    setShowError(false);
-  };
-
   const handleDonate = () => {
-    const raw = inputRef.current?.value?.trim();
-    const amount = parseInt(raw, 10);
-
-    if (!raw || isNaN(amount) || amount < 1) {
-      setShowError(true);
-      inputRef.current?.focus();
-      return;
-    }
-
-    setShowError(false);
-
     const milaapBase = "https://milaap.org/fundraisers/support-syam-kumar-s-s";
-    const url = `${milaapBase}?utm_source=syamkumar-site&amount=${amount}`;
+    const url = `${milaapBase}?utm_source=syamkumar-site`;
 
     const btn = btnRef.current;
     if (btn) {
@@ -57,10 +27,6 @@ export default function FundPage() {
         btn.disabled = false;
       }
     }, 900);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleDonate();
   };
 
   return (
@@ -87,8 +53,8 @@ export default function FundPage() {
             Your support makes this world record mission possible.
           </p>
 
-          {/* Live Milaap progress */}
-          <div className="progress-block">
+          {/* Live Milaap progress - THE SPOTLIGHT */}
+          <div className="progress-block spotlight-block">
             <div className="progress-numbers">
               <span className="raised-amount">{raisedText}</span>
               <span className="goal-amount">of {goalText} goal</span>
@@ -97,50 +63,19 @@ export default function FundPage() {
               <div className="progress-fill" id="fundFill" style={{ width: fillWidth }}></div>
             </div>
             <div className="progress-meta">
-              <span>{supportersCount} supporters</span>
               <span>{pct}% funded</span>
             </div>
           </div>
 
-          {/* Preset amounts */}
-          <label className="input-label">Choose or enter an amount</label>
-          <div className="preset-amounts">
-            {presets.map((amount) => (
-              <button
-                key={amount}
-                className={`preset-btn${activePreset === amount ? " active" : ""}`}
-                data-amount={amount}
-                onClick={() => handlePresetClick(amount)}
-              >
-                ₹{amount.toLocaleString("en-IN")}
-              </button>
-            ))}
-          </div>
-
-          {/* Custom amount input */}
-          <div className="amount-input-row">
-            <span className="currency-symbol">₹</span>
-            <input
-              ref={inputRef}
-              className="amount-input"
-              type="number"
-              min="1"
-              step="1"
-              placeholder="Enter amount"
-              inputMode="numeric"
-              autoComplete="off"
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-            />
+          {/* Supporters Display - Secondary */}
+          <div className="supporters-showcase-lite">
+            <div className="supporters-count-medium">{supportersCount}</div>
+            <div className="supporters-label-sm">Amazing Supporters</div>
           </div>
 
           <button ref={btnRef} className="donate-cta" onClick={handleDonate}>
-            Donate to Syam&apos;s Dream <span className="arrow">→</span>
+            Donate to Syam&apos;s Dream <span class="arrow">→</span>
           </button>
-
-          <p className={`fund-error${showError ? " show" : ""}`}>
-            Please enter a valid amount (minimum ₹1)
-          </p>
 
           <p className="fund-note">
             You will be securely redirected to Milaap to complete your donation. Your details are safe.
