@@ -1873,6 +1873,18 @@ img {
   .fund-section {
     padding: 4rem 1.5rem;
   }
+
+  /* ---- Video modal ---- */
+  .video-modal {
+    padding: 1rem;
+  }
+
+  /* ---- Witness handwritten text fix ---- */
+  .witness-section .hero-handwritten {
+    font-size: clamp(1.6rem, 9vw, 3rem);
+    position: absolute;
+    top: 0.5rem;
+  }
 }
 
 /* =====================================================
@@ -2648,4 +2660,634 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* =====================================================
+   COMPREHENSIVE RESPONSIVE FIXES – All Breakpoints
+===================================================== */
+
+/* ── 1024px: Tablet Landscape ── */
+@media (max-width: 1024px) {
+  /* Witness: scale down photo a bit */
+  .witness-photo-container {
+    transform: translateY(60px) scale(1.15);
+    padding-left: 40px;
+  }
+
+  .kerala-map-container {
+    width: 340px;
+  }
+
+  .witness-section {
+    padding: 8rem 5vw 6rem;
+  }
+
+  /* Projects */
+  .project-info-row {
+    gap: 3rem;
+  }
+
+  /* Video cards: slightly smaller */
+  .video-card {
+    width: 260px;
+    height: 260px;
+  }
+
+  .video-thumb-v2 {
+    width: 224px;
+    height: 160px;
+  }
+
+  /* Mission bg text */
+  .mission-bg-text-framer {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* ── 900px: Tablet Portrait ── */
+@media (max-width: 900px) {
+  /* ---- Witness Section ---- */
+  .witness-section {
+    grid-template-columns: 1fr;
+    padding: 6rem 5vw 4rem;
+    min-height: auto;
+    gap: 0;
+  }
+
+  .witness-left {
+    align-self: center;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .witness-btns {
+    align-items: center;
+  }
+
+  .witness-center {
+    min-height: 320px;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .kerala-map-container {
+    width: 280px;
+    top: -20px;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .witness-photo-container {
+    transform: translateY(40px) scale(1.1);
+    padding-left: 20px;
+    max-width: 420px;
+  }
+
+  .witness-right {
+    padding-left: 0;
+    align-self: center;
+  }
+
+  .witness-title {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* ---- Video Section ---- */
+  .video-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .video-card {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    padding: 16px;
+  }
+
+  .video-thumb-v2 {
+    width: 100%;
+    height: 180px;
+  }
+
+  /* ---- Gallery ---- */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ---- News ---- */
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ---- Timeline ---- */
+  .tcard-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tcard-sm {
+    min-height: 220px;
+  }
+
+  /* ---- Projects ---- */
+  .project-info-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* ---- Mission bg text ---- */
+  .mission-bg-text-framer {
+    white-space: normal;
+    word-break: break-word;
+    font-size: clamp(3rem, 10vw, 7rem);
+    margin: 2rem 0 4rem;
+  }
+
+  .mission-section {
+    padding: 6rem 5vw 8rem;
+  }
+
+  .framer-card-outer {
+    position: relative;
+    top: auto;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- Footer ---- */
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .footer-contact {
+    text-align: center;
+  }
+}
+
+/* ── 768px: Tablet Small ── */
+@media (max-width: 768px) {
+  /* ---- Sections general padding ---- */
+  .video-section {
+    padding: 60px 5vw;
+    margin-top: -60px;
+  }
+
+  .projects-section {
+    padding: 5rem 5vw 6rem;
+  }
+
+  .timeline-section {
+    padding: 0.5rem 4vw 4rem;
+  }
+
+  .gallery-section {
+    padding: 0 4vw 4rem;
+  }
+
+  .fund-section {
+    padding: 5rem 1.5rem;
+  }
+
+  /* ---- Witness ---- */
+  .witness-photo-container {
+    transform: translateY(30px) scale(1.05);
+    padding-left: 10px;
+    max-width: 320px;
+  }
+
+  .kerala-map-container {
+    width: 240px;
+  }
+
+  .stat-num {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+
+  .stat-label,
+  .stat-label-only {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+  }
+
+  .btn-fund-dream,
+  .btn-view-records {
+    font-size: 1.1rem;
+    padding: 0.9rem 2.2rem;
+  }
+
+  /* ---- Hero ---- */
+  .progress-pill {
+    padding: 6px 14px;
+    gap: 8px;
+  }
+
+  .pill-text {
+    font-size: 0.75rem;
+  }
+
+  /* ---- Video ---- */
+  .video-intro-text {
+    font-size: 16px;
+  }
+
+  /* ---- Mission ---- */
+  .framer-card-inner {
+    border-radius: 24px;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .framer-card-title {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .framer-card-text {
+    font-size: 1rem;
+  }
+
+  .mission-section-heading {
+    font-size: 18px;
+    margin-bottom: 3rem;
+  }
+
+  /* ---- News header ---- */
+  .news-header-row {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .news-header-desc {
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* ---- Footer new ---- */
+  .footer-top-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-huge-text {
+    white-space: normal;
+    word-break: break-word;
+    font-size: clamp(40px, 18vw, 120px);
+  }
+
+  /* ---- Gallery page header ---- */
+  .gallery-page-header-row,
+  .news-page-header-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gallery-page-desc,
+  .news-page-desc {
+    max-width: 100%;
+  }
+}
+
+/* ── 640px: Mobile Landscape / Large Mobile ── */
+@media (max-width: 640px) {
+  /* ---- Navbar ---- */
+  #navbar {
+    width: calc(100% - 24px);
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  /* ---- Hero ---- */
+  .hero-handwritten {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .hero-content {
+    padding: 0 1.25rem;
+  }
+
+  /* ---- Witness ---- */
+  .witness-section {
+    padding: 5rem 4vw 3rem;
+  }
+
+  .witness-center {
+    min-height: 240px;
+  }
+
+  .kerala-map-container {
+    width: 200px;
+  }
+
+  .witness-photo-container {
+    transform: translateY(20px) scale(1.0);
+    padding-left: 0;
+    max-width: 260px;
+  }
+
+  /* ---- Video ---- */
+  .video-section {
+    padding: 50px 4vw 60px;
+  }
+
+  .video-card {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .video-thumb-v2 {
+    border-radius: 16px;
+  }
+
+  /* ---- Gallery ---- */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .gallery-main {
+    height: 260px;
+  }
+
+  .gallery-wide {
+    height: 200px;
+  }
+
+  /* ---- News ---- */
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- Timeline ---- */
+  .tcard-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tcard-large {
+    min-height: 240px;
+  }
+
+  .tcard-body {
+    padding: 1.6rem 1.4rem;
+  }
+
+  /* ---- Projects ---- */
+  .projects-section {
+    padding: 4rem 4vw 5rem;
+  }
+
+  .project-media-wrap {
+    border-radius: 20px;
+  }
+
+  /* ---- Fund CTA ---- */
+  .fund-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .fund-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  /* ---- Footer ---- */
+  .site-footer {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* ---- Mission ---- */
+  .mission-section {
+    padding: 5rem 4vw 6rem;
+  }
+
+  .mission-bg-text-framer {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    margin: 1.5rem 0 3rem;
+    letter-spacing: -0.005em;
+  }
+}
+
+/* ── 480px: Mobile Portrait ── */
+@media (max-width: 480px) {
+  /* ---- Base fonts / spacing ---- */
+  html {
+    font-size: 15px;
+  }
+
+  /* ---- Hero ---- */
+  .hero-name {
+    font-size: clamp(2.8rem, 14vw, 5rem);
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+  }
+
+  .hero-btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.8rem;
+  }
+
+  .progress-pill {
+    padding: 5px 12px;
+    gap: 6px;
+  }
+
+  .pill-bar {
+    width: 56px;
+  }
+
+  /* ---- Witness ---- */
+  .witness-stats {
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .witness-center {
+    min-height: 200px;
+  }
+
+  .kerala-map-container {
+    width: 160px;
+    top: 0;
+  }
+
+  .witness-photo-container {
+    transform: translateY(10px) scale(0.95);
+    max-width: 220px;
+  }
+
+  .btn-fund-dream {
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+  }
+
+  .btn-view-records {
+    font-size: 1rem;
+    padding: 0.8rem 1.8rem;
+  }
+
+  /* ---- Video ---- */
+  .video-section {
+    padding: 40px 4vw 50px;
+    margin-top: -40px;
+  }
+
+  .video-thumb-v2 {
+    height: 150px;
+  }
+
+  /* ---- Featured video (16/7 → 16/9 on mobile) ---- */
+  .featured-video,
+  .featured-video-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* ---- Gallery ---- */
+  .gallery-section {
+    padding: 0 3vw 3rem;
+  }
+
+  .gallery-main {
+    height: 200px;
+  }
+
+  .gallery-wide {
+    height: 160px;
+  }
+
+  /* ---- Mission ---- */
+  .framer-card-inner {
+    padding: 1.25rem;
+    border-radius: 20px;
+    gap: 1.2rem;
+  }
+
+  .framer-card-title {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .framer-card-text {
+    font-size: 0.92rem;
+  }
+
+  /* ---- Timeline ---- */
+  .tcard-large {
+    min-height: 200px;
+  }
+
+  .tcard-sm {
+    min-height: 180px;
+  }
+
+  /* ---- Fund page ---- */
+  .fund-card {
+    padding: 1.8rem 1.2rem;
+    border-radius: 16px;
+  }
+
+  .fund-heading {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  /* ---- Footer new ---- */
+  .footer-new-wrap {
+    padding: 3rem 4vw 1.5rem;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+
+  .footer-huge-text {
+    font-size: clamp(32px, 18vw, 90px);
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* ---- Nav mobile dropdown ---- */
+  .nav-mobile {
+    padding: 0.8rem 1.2rem;
+  }
+
+  /* ---- Projects ---- */
+  .project-name-v2 {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+  }
+
+  .project-tagline-v2 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+
+  /* ---- News section ---- */
+  .news-section {
+    padding: 4rem 4vw 5rem !important;
+  }
+
+  .news-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+}
+
+/* ── 380px: Very Small Mobile ── */
+@media (max-width: 380px) {
+  .hero-name {
+    font-size: clamp(2.4rem, 14vw, 4rem);
+  }
+
+  .nav-inner {
+    padding: 0.5rem 0.9rem;
+  }
+
+  .nav-logo {
+    font-size: 1.15rem;
+  }
+
+  .witness-section {
+    padding: 4rem 4vw 2rem;
+  }
+
+  .kerala-map-container {
+    width: 130px;
+  }
+
+  .witness-photo-container {
+    transform: translateY(8px) scale(0.88);
+    max-width: 180px;
+  }
+
+  .btn-fund-dream,
+  .btn-view-records {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .video-card {
+    border-radius: 16px;
+  }
+
+  .framer-card-inner {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .fund-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-huge-text {
+    font-size: clamp(28px, 17vw, 70px);
+  }
 }

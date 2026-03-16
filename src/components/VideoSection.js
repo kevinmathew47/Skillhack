@@ -113,14 +113,22 @@ export default function VideoSection() {
           <button 
             className="modal-close" 
             onClick={closeModal}
+            aria-label="Close video"
             style={{
               position: 'absolute',
-              top: '-40px',
-              right: '0',
-              background: 'none',
+              top: '10px',
+              right: '10px',
+              background: 'rgba(0,0,0,0.55)',
               border: 'none',
               color: 'white',
-              fontSize: '2rem',
+              fontSize: '1.5rem',
+              lineHeight: 1,
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 10
             }}
