@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function TimelineSection() {
   return (
     <section id="journey" className="timeline-section" style={{ position: 'relative', paddingTop: '8rem' }}>
@@ -69,6 +71,12 @@ export default function TimelineSection() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+        <Link href="/about" className="btn-outline-dark">
+          More About Me
+        </Link>
       </div>
     </section>
   );

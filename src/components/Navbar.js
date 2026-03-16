@@ -37,7 +37,7 @@ export default function Navbar() {
         <Link href="/" className="nav-logo">Syam</Link>
         <ul className="nav-links">
           <li><Link href="/">Home</Link></li>
-          <li><Link href={getSectionHref("#about")}>About</Link></li>
+          <li><Link href="/about">About</Link></li>
           <li><Link href={getSectionHref("#journey")}>Journey</Link></li>
           <li><Link href={getSectionHref("#mission")}>Mission</Link></li>
           <li><Link href={getSectionHref("#gallery")}>Gallery</Link></li>
@@ -59,7 +59,7 @@ export default function Navbar() {
       <div className={`nav-mobile${mobileOpen ? " open" : ""}`} id="navMobile">
         <ul>
           <li><Link href="/" onClick={closeMenu}>Home</Link></li>
-          <li><Link href={getSectionHref("#about")} onClick={closeMenu}>About</Link></li>
+          <li><Link href="/about" onClick={closeMenu}>About</Link></li>
           <li><Link href={getSectionHref("#journey")} onClick={closeMenu}>Journey</Link></li>
           <li><Link href={getSectionHref("#mission")} onClick={closeMenu}>Mission</Link></li>
           <li><Link href={getSectionHref("#gallery")} onClick={closeMenu}>Gallery</Link></li>
