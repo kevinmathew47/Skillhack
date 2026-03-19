@@ -6,8 +6,6 @@ import HeroSection from "@/components/HeroSection";
 import WitnessSection from "@/components/WitnessSection";
 import VideoSection from "@/components/VideoSection";
 import FeaturedVideo from "@/components/FeaturedVideo";
-import ProjectsSection from "@/components/ProjectsSection";
-import TimelineSection from "@/components/TimelineSection";
 import GallerySection from "@/components/GallerySection";
 import MissionSection from "@/components/MissionSection";
 import FundCTA from "@/components/FundCTA";
@@ -30,7 +28,6 @@ export default function HomePage() {
       />
       <WitnessSection />
       <VideoSection />
-      <TimelineSection />
       <MissionSection />
       <FundCTA
         raisedText={`${raisedText} raised`}
@@ -38,7 +35,6 @@ export default function HomePage() {
         fillWidth={fillWidth}
         supportersCount={supportersCount}
       />
-      <ProjectsSection />
       <NewsSection />
       <div 
         className="hero-handwritten text-center" 

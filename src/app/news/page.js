@@ -1,4 +1,3 @@
-import SubpageHeader from "@/components/SubpageHeader";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { newsData } from "@/data/newsData";
@@ -7,7 +6,6 @@ export default function NewsPage() {
 
   return (
     <>
-      <SubpageHeader />
       <main className="news-page-main">
         <div className="news-page-header-row" style={{ paddingTop: '3rem' }}>
           <div className="news-page-title-wrap">
