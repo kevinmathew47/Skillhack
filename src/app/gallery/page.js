@@ -1,4 +1,3 @@
-import SubpageHeader from "@/components/SubpageHeader";
 import Footer from "@/components/Footer";
 
 export default function GalleryPage() {
@@ -36,7 +35,6 @@ export default function GalleryPage() {
 
   return (
     <>
-      <SubpageHeader />
       <main className="gallery-page-main" style={{ paddingTop: '10rem' }}>
         <div className="gallery-grid-orderly">
           {images.map((img, i) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function VideoSection() {
   const [activeVideo, setActiveVideo] = useState(null);
@@ -22,13 +22,23 @@ export default function VideoSection() {
 
   const openModal = (videoId) => {
     setActiveVideo(videoId);
-    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setActiveVideo(null);
-    document.body.style.overflow = "";
   };
+
+  // Handle body overflow when modal is open
+  useEffect(() => {
+    if (activeVideo) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeVideo]);
 
   const handleKeyDown = (e, videoId) => {
     if (e.key === "Enter" || e.key === " ") {
