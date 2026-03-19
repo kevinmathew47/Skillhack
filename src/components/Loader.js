@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 
 export default function Loader() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => {
+    // Initialize state from sessionStorage if available (server-safe)
+    if (typeof window !== "undefined") {
+      return !sessionStorage.getItem("hasSeenLoader");
+    }
+    return true;
+  });
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Check if loader has already been shown in this session
-    const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
-    if (hasSeenLoader) {
-      setIsVisible(false);
-      return;
-    }
+    if (!isVisible) return;
 
     document.body.style.overflow = "hidden";
 
@@ -34,7 +35,7 @@ export default function Loader() {
       clearTimeout(timeout);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
